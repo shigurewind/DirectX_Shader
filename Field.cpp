@@ -50,7 +50,7 @@ static LIGHT Light; //ライトオブジェクト
 
 
 
-VERTEX_3D	Box[NUM_VERTEX] =
+static VERTEX_3D	Box[NUM_VERTEX] =
 {
 	//天井////////////////////////////////////////////
 	{//頂点V0 LEFT-TOP
@@ -89,8 +89,8 @@ HRESULT InitPolygon3D(void)
 	int Texture = TextureLoad(L"asset\\texture\\sura.jpg");
 
 	//シェーダー読み込み
-	CreateVertexShader(&g_VertexShader, &g_VertexLayout, "spotLightingVS.cso");
-	CreatePixelShader(&g_PixelShader, "spotLightingPS.cso");
+	CreateVertexShader(&g_VertexShader, &g_VertexLayout, "bumpVS.cso");
+	CreatePixelShader(&g_PixelShader, "bumpPS.cso");
 
 	//カメラの初期化
 	g_CameraObject.Position = XMFLOAT3(0.0f, 1.5f, -2.0f);

@@ -9,13 +9,15 @@
 #include "texture.h"
 
 //#include	"polygon2D.h"
-#include	"Field.h"//<<<<<<<<<<<’Ç‰Á
+//#include	"Field.h"//<<<<<<<<<<<’Ç‰Á
 #include	"Player.h"//<<<<<<<<<<<’Ç‰Á
 #include "PointLight.h"//<<<<<<<<<<<’Ç‰Á
 #include "spotLighting.h"
 #include "limLighting.h"
 #include "toon1.h"
 #include "toon2.h"
+
+#include "bumpMapField.h"
 
 
 
@@ -46,13 +48,15 @@ void InitGame()
 	InitCamera();
 
 //	InitPolygon2D();
-	InitPolygon3D();
+	//InitPolygon3D();
 	InitPolygonModel();
 	InitPolygonModel2();
 	InitPolygonModel3();
 	InitLimLighting();
 	InitPolygonToon1();
 	InitPolygonToon2();
+
+	InitBumpMapField();
 	
 
 }
@@ -63,13 +67,15 @@ void FinalizeGame()
 {
 	FinalizeCamera();
 //	FinalizePolygon2D();
-	FinalizePolygon3D();
+	//FinalizePolygon3D();
 	FinalizePolygonModel();
 	FinalizePolygonModel2();
 	FinalizePolygonModel3();
 	FinalizeLimLighting();
 	FinalizePolygonToon1();
 	FinalizePolygonToon2();
+
+	FinalizeBumpMapField();
 
 	TextureFinalize();
 }
@@ -83,13 +89,15 @@ void UpdateGame()
 	{
 		UpdateCamera();
 //		UpdatePolygon2D();
-		UpdatePolygon3D();
+		//UpdatePolygon3D();
 		UpdatePolygonModel();
 		UpdatePolygonModel2();
 		UpdatePolygonModel3();
 		UpdateLimLighting();
 		UpdatePolygonToon1();
 		UpdatePolygonToon2();
+
+		UpdateBumpMapField();
 
 	}
 
@@ -104,14 +112,14 @@ void DrawGame()
 //	SetWorldViewProjection2D();
 //	DrawPolygon2D();
 	DrawCamera();
-	DrawPolygon3D();
+	//DrawPolygon3D();
 	DrawPolygonModel();
 	DrawPolygonModel2();
 	DrawPolygonModel3();
 	DrawLimLighting();
 	DrawPolygonToon1();
 	DrawPolygonToon2();
-
+	DrawBumpMapField();
 }
 
 /*

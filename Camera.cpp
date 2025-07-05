@@ -10,9 +10,9 @@ Camera		g_Camera;	//カメラ管理構造体
 void	InitCamera()
 {
 	//カメラの初期化
-	g_Camera.Position = XMFLOAT3(0.0f, 0.5f, -2.0f);		//カメラ座標
+	g_Camera.Position = XMFLOAT3(0.0f, 1.5f, -2.0f);		//カメラ座標
 	g_Camera.UpVector = XMFLOAT3(0.0f, 1.0f, 0.0f);		//カメラの上方ベクトル
-	g_Camera.AtPosition = XMFLOAT3(0.0f, 0.0f, 10.0f);	//カメラの注視点座標
+	g_Camera.AtPosition = XMFLOAT3(0.0f, 0.0f, 1.0f);	//カメラの注視点座標
 	g_Camera.Fov = 35.0f;								//画角
 	g_Camera.Nearclip = 0.5f;							//近面クリップ
 	g_Camera.Farclip = 1000.0f;							//遠面クリップ

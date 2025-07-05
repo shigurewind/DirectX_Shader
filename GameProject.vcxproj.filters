@@ -51,9 +51,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Field.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="pointLight.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -67,6 +64,12 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="toon2.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="bumpMapField.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Field.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,9 +110,6 @@
     <ClInclude Include="Player.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Field.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="pointLight.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -123,6 +123,12 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="toon2.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="bumpMapField.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Field.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -166,5 +172,7 @@
     <FxCompile Include="shader\toon2VS.hlsl" />
     <FxCompile Include="shader\toonEdgePS.hlsl" />
     <FxCompile Include="shader\toonEdgeVS.hlsl" />
+    <FxCompile Include="shader\bumpPS.hlsl" />
+    <FxCompile Include="shader\bumpVS.hlsl" />
   </ItemGroup>
 </Project>
