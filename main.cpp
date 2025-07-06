@@ -4,6 +4,12 @@
 #include	"Manager.h"
 #include	"keyboard.h"
 
+#include "imgui.h"
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx11.h"
+
+#include "debugUI.h"
+
 //===================================
 // ライブラリのリンク
 //===================================
@@ -171,6 +177,11 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 //=========================================
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
+		return true;
+	
+
 	switch (uMsg)
 	{
 		case WM_ACTIVATEAPP:
@@ -219,6 +230,23 @@ HRESULT	Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 {
 	//DirectX関連の初期化
 	InitRenderer(hInstance, hWnd, bWindow);
+
+	// Setup Dear ImGui context
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // imguiのキーボード操作
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // imguiのパッド操作
+
+
+	// Setup Platform/Renderer backends
+	ImGui_ImplWin32_Init(hWnd);
+	ImGui_ImplDX11_Init(GetDevice(), GetDeviceContext());
+
+	// 日本語フォントの指定
+	//実際を表示したい日本語表示する前のダブルクォーテーションにu8を入れる（Unicode指定）
+	io.Fonts->AddFontFromFileTTF(u8"c:\\Windows\\Fonts\\meiryo.ttc", 18.0f, nullptr, io.Fonts->GetGlyphRangesJapanese());
+
 	//キー入力初期化
 //	Keyboard_Initialize();
 	//マネージャ初期化
@@ -233,6 +261,10 @@ HRESULT	Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 //====================================
 void	Finalize(void)
 {
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
+
 	//マネージャ終了
 	FinalizeManager();
 	//DirectX関連の終了処理
@@ -244,6 +276,14 @@ void	Finalize(void)
 //====================================
 void	Update(void)
 {
+	// Imguiの画面を作る
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	//Imgui_debugUI
+	ShowDebugUI();
+
 	//マネージャ更新
 	UpdateManager();
 
@@ -258,6 +298,12 @@ void	Draw(void)
 	Clear();
 	//マネージャ描画
 	DrawManager();
+
+	// Imguiの描画
+	// (Your code clears your framebuffer, renders your other stuff etc.)
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
 	//バックバッファをフロントバッファへコピー
 	Present();
 
