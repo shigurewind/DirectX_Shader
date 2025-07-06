@@ -60,4 +60,9 @@ void	DrawCamera()//3Dg—p
 
 
 
+Camera* GetCamera()
+{
+	return &g_Camera;
+}
+
 
