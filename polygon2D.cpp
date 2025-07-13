@@ -41,10 +41,10 @@ HRESULT InitPolygon2D(void)
 	CreatePixelShader(&g_PixelShader, "shaderPS.cso");
 
 	//2Dオブジェクト初期化
-	g_Object1.Position = XMFLOAT3(SCREEN_WIDTH / 2 - 200, SCREEN_HEIGHT / 2, 0.0f);
+	g_Object1.Position = XMFLOAT3(SCREEN_WIDTH / 3 / 2, SCREEN_HEIGHT / 3 / 2, 0.0f);
 	g_Object1.Color = XMFLOAT4(1.0f, 0.2f, 0.2f, 1.0f);
 	g_Object1.Scale = XMFLOAT2(1.0f, 1.0f);
-	g_Object1.Size = XMFLOAT2(200.0f, 200.0f);
+	g_Object1.Size = XMFLOAT2(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3);
 	g_Object1.Rotate = 0.0f;
 	g_Object1.TexID = Texture;
 
@@ -99,7 +99,10 @@ void DrawPolygon2D(void)
 	{//2Dポリゴン1枚ずつで必要な処理
 
 		//テクスチャをセット
-		ID3D11ShaderResourceView* tex = GetTexture(g_Object1.TexID);
+		//ID3D11ShaderResourceView* tex = GetTexture(g_Object1.TexID);
+		
+		//レンダリングテクスチャをセット
+		ID3D11ShaderResourceView* tex = GetPETexture();
 		GetDeviceContext()->PSSetShaderResources(0, 1, &tex);
 
 		//平行移動行列の作成（表示座標を決める）

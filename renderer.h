@@ -86,3 +86,6 @@ void SetCameraPosition(XMFLOAT3 CameraPosition);
 
 //ƒJƒŠƒ“ƒO
 void SetCullMode(D3D11_CULL_MODE cull);
+
+ID3D11ShaderResourceView* GetPETexture();
+void BeginPE();

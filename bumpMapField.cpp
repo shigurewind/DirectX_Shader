@@ -88,8 +88,8 @@ HRESULT InitBumpMapField(void)
 	//テクスチャ読み込み
 	int Texture = TextureLoad(L"asset\\texture\\sura.jpg");
 
-	g_Object1.BumpTexID = TextureLoad(L"asset\\texture\\bump.png");
-	//g_Object1.BumpTexID = TextureLoad(L"asset\\texture\\Normal.bmp");
+	//g_Object1.BumpTexID = TextureLoad(L"asset\\texture\\bump.png");
+	g_Object1.BumpTexID = TextureLoad(L"asset\\texture\\Normal.bmp");
 
 	//シェーダー読み込み
 	CreateVertexShader(&g_VertexShader, &g_VertexLayout, "bumpVS.cso");
@@ -143,7 +143,7 @@ HRESULT InitBumpMapField(void)
 	Light.Ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f); //薄い白色
 
 	Light.Position = XMFLOAT4(0.0f, 20.0f, 0.0f, 1.0f); //ライトの位置
-	Light.PointLightParam = XMFLOAT4(100.0f, 2.5f, 0.0f, 0.0f); //xは光届く距離 y明度調整
+	Light.PointLightParam = XMFLOAT4(50.0f, 1.5f, 0.0f, 0.0f); //xは光届く距離 y明度調整
 
 	Light.Angle = XMFLOAT4((3.1415f / 180.0f) * 30.0f, 0.0f, 0.0f, 0.0f); //スポットライトの角度
 

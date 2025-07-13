@@ -35,17 +35,17 @@ void main( in float4 inPosition : SV_POSITION,     //変換後頂点座標
     
     //法線として格納(bump.png)
     //順番RGBじゃなくて、RBGのは注意
-    normal.x = normalMap.r; //X成分
-    normal.y = normalMap.b; //Y成分
-    normal.z = normalMap.g; //Z成分
-    normal.w = 0.0f; //W成分は0にする
-    
-    //法線として格納(Normal.bmp)
-    //順番RGBじゃなくて、RBGのは注意
-    //normal.x = -normalMap.r; //X成分
+    //normal.x = normalMap.r; //X成分
     //normal.y = normalMap.b; //Y成分
     //normal.z = normalMap.g; //Z成分
     //normal.w = 0.0f; //W成分は0にする
+    
+    //法線として格納(Normal.bmp)
+    //順番RGBじゃなくて、RBGのは注意
+    normal.x = -normalMap.r; //X成分
+    normal.y = normalMap.b; //Y成分
+    normal.z = normalMap.g; //Z成分
+    normal.w = 0.0f; //W成分は0にする
     
     
     

@@ -178,6 +178,7 @@
     <ClCompile Include="model.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="pointLight.cpp" />
+    <ClCompile Include="polygon2D.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="spotLighting.cpp" />
     <ClCompile Include="sprite.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="model.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="pointLight.h" />
+    <ClInclude Include="polygon2D.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="spotLighting.h" />
     <ClInclude Include="sprite.h" />

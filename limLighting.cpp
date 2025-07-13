@@ -65,11 +65,11 @@ HRESULT InitLimLighting(void)
 	temp = XMVector4Normalize(temp); //正規化
 	XMStoreFloat4(&Light.Direction, temp); //正規化した値を戻す
 
-	Light.Diffuse = XMFLOAT4(1.0f, 0.3f, 0.2f, 1.0f); //
+	Light.Diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f); //
 	Light.Ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f); //薄い白色
 
-	Light.Position = XMFLOAT4(0.5f, 1.5f, 0.0f, 1.0f); //ライトの位置
-	Light.PointLightParam = XMFLOAT4(10.0f, 0.0f, 0.0f, 0.0f); //xは光届く距離
+	Light.Position = XMFLOAT4(0.5f, 1.5f, 2.0f, 1.0f); //ライトの位置
+	Light.PointLightParam = XMFLOAT4(100.0f, 0.0f, 0.0f, 0.0f); //xは光届く距離
 
 
 	return S_OK;

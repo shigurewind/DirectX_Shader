@@ -48,6 +48,26 @@ ID3D11DepthStencilState* g_DepthStateEnable;
 ID3D11DepthStencilState* g_DepthStateDisable;
 
 
+ID3D11RenderTargetView* g_PERenderTargetView = NULL;
+ID3D11ShaderResourceView* g_PEShaderResourceView = NULL;
+
+
+ID3D11ShaderResourceView* GetPETexture()
+{
+	return g_PEShaderResourceView;
+}
+
+
+void BeginPE()
+{
+	g_ImmediateContext->OMSetRenderTargets(1, &g_PERenderTargetView, g_DepthStencilView);
+
+	float ClearColor[4] = { 0.0f, 0.5f, 0.0f, 1.0f };//クリア
+
+	g_ImmediateContext->ClearRenderTargetView(g_PERenderTargetView, ClearColor);
+
+	g_ImmediateContext->ClearDepthStencilView(g_DepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
 
 ID3D11Device* GetDevice( void )
 {
@@ -358,6 +378,46 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	g_ImmediateContext->PSSetConstantBuffers(4, 1, &g_CameraBuffer);//b4
 
 
+
+	{
+		ID3D11Texture2D* ppTexture = NULL;
+		D3D11_TEXTURE2D_DESC td;
+		ZeroMemory(&td, sizeof(td));
+
+		td.Width = sd.BufferDesc.Width;
+		td.Height = sd.BufferDesc.Height;
+
+		td.MipLevels = 1;
+		td.ArraySize = 1;
+
+		td.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		td.SampleDesc = sd.SampleDesc;
+		td.Usage = D3D11_USAGE_DEFAULT;
+		td.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+		td.CPUAccessFlags = 0;
+		td.MiscFlags = 0;
+
+		g_D3DDevice->CreateTexture2D(&td, NULL, &ppTexture);
+
+		D3D11_RENDER_TARGET_VIEW_DESC rtvd;
+		ZeroMemory(&rtvd, sizeof(rtvd));
+		rtvd.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		rtvd.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+		g_D3DDevice->CreateRenderTargetView(ppTexture, &rtvd, &g_PERenderTargetView);
+
+		D3D11_SHADER_RESOURCE_VIEW_DESC srvd;
+		ZeroMemory(&srvd, sizeof(srvd));
+		srvd.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		srvd.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+		srvd.Texture2D.MipLevels = 1;
+		g_D3DDevice->CreateShaderResourceView(ppTexture, &srvd, &g_PEShaderResourceView);
+
+
+
+	}
+
+
+
 	return S_OK;
 }
 
@@ -387,6 +447,9 @@ void FinalizeRenderer(void)
 //=============================================================================
 void Clear(void)
 {
+	g_ImmediateContext->OMSetRenderTargets(1, &g_RenderTargetView, g_DepthStencilView);
+
+
 	// バックバッファクリア色
 	float ClearColor[4] = { 0.4f, 0.2f, 0.2f, 1.0f };//純黒は避ける
 	//バックバッファをクリア

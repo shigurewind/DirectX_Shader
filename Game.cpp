@@ -8,8 +8,8 @@
 #include "Camera.h"
 #include "texture.h"
 
-//#include	"polygon2D.h"
-//#include	"Field.h"//<<<<<<<<<<<追加
+#include	"polygon2D.h"
+#include	"Field.h"//<<<<<<<<<<<追加
 #include	"Player.h"//<<<<<<<<<<<追加
 #include "PointLight.h"//<<<<<<<<<<<追加
 #include "spotLighting.h"
@@ -47,8 +47,8 @@ void InitGame()
 	TextureInitialize(GetDevice());
 	InitCamera();
 
-//	InitPolygon2D();
-	//InitPolygon3D();
+	InitPolygon2D();
+	InitPolygon3D();
 	InitPolygonModel();
 	InitPolygonModel2();
 	InitPolygonModel3();
@@ -66,8 +66,8 @@ void InitGame()
 void FinalizeGame()
 {
 	FinalizeCamera();
-//	FinalizePolygon2D();
-	//FinalizePolygon3D();
+	FinalizePolygon2D();
+	FinalizePolygon3D();
 	FinalizePolygonModel();
 	FinalizePolygonModel2();
 	FinalizePolygonModel3();
@@ -88,8 +88,8 @@ void UpdateGame()
 	if (GetPause() == false)//ポーズ中でなければ更新実行
 	{
 		UpdateCamera();
-//		UpdatePolygon2D();
-		//UpdatePolygon3D();
+		UpdatePolygon2D();
+		UpdatePolygon3D();
 		UpdatePolygonModel();
 		UpdatePolygonModel2();
 		UpdatePolygonModel3();
@@ -107,19 +107,27 @@ void UpdateGame()
 //ゲームシーン描画
 void DrawGame()
 {
+	//1パス目
+	BeginPE();
 
-	// 2D用マトリクス設定
-//	SetWorldViewProjection2D();
-//	DrawPolygon2D();
+	// 3D用マトリクス設定
 	DrawCamera();
 	//DrawPolygon3D();
-	DrawPolygonModel();
-	DrawPolygonModel2();
-	DrawPolygonModel3();
-	DrawLimLighting();
+	/*DrawPolygonModel();
+	DrawPolygonModel2();*/
+	//DrawPolygonModel3();
+	//DrawLimLighting();
 	DrawPolygonToon1();
-	DrawPolygonToon2();
+	//DrawPolygonToon2();
 	DrawBumpMapField();
+
+	//2パス目
+	Clear();
+	// 2D用マトリクス設定
+	SetWorldViewProjection2D();
+	DrawPolygon2D();
+
+	Present();
 }
 
 /*
