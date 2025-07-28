@@ -99,6 +99,9 @@
     <ClCompile Include="polygon2D.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="mosaic.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -191,6 +194,9 @@
     <ClInclude Include="polygon2D.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="mosaic.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\shaderPS.hlsl">
@@ -234,5 +240,7 @@
     <FxCompile Include="shader\toonEdgeVS.hlsl" />
     <FxCompile Include="shader\bumpPS.hlsl" />
     <FxCompile Include="shader\bumpVS.hlsl" />
+    <FxCompile Include="shader\mosaicPS.hlsl" />
+    <FxCompile Include="shader\mosaicVS.hlsl" />
   </ItemGroup>
 </Project>

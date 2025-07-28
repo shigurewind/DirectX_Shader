@@ -18,6 +18,7 @@
 #include "toon2.h"
 
 #include "bumpMapField.h"
+#include "mosaic.h"
 
 
 
@@ -57,6 +58,8 @@ void InitGame()
 	InitPolygonToon2();
 
 	InitBumpMapField();
+
+	InitMosaic();
 	
 
 }
@@ -76,6 +79,8 @@ void FinalizeGame()
 	FinalizePolygonToon2();
 
 	FinalizeBumpMapField();
+
+	FinalizeMosaic();
 
 	TextureFinalize();
 }
@@ -98,6 +103,8 @@ void UpdateGame()
 		UpdatePolygonToon2();
 
 		UpdateBumpMapField();
+
+		UpdateMosaic();
 
 	}
 
@@ -125,7 +132,8 @@ void DrawGame()
 	Clear();
 	// 2D用マトリクス設定
 	SetWorldViewProjection2D();
-	DrawPolygon2D();
+	//DrawPolygon2D();
+	DrawMosaic();
 
 	Present();
 }

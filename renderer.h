@@ -89,3 +89,6 @@ void SetCullMode(D3D11_CULL_MODE cull);
 
 ID3D11ShaderResourceView* GetPETexture();
 void BeginPE();
+
+
+void SetParameter(XMFLOAT4 Parameter);

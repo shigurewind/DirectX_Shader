@@ -58,3 +58,11 @@ cbuffer CameraBufffer : register(b4)
     float4 CameraPosition;
     
 };
+
+
+cbuffer ParameterBuffer : register(b5)
+{
+    float4		Parameter; 
+    
+    
+};

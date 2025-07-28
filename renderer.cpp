@@ -52,6 +52,15 @@ ID3D11RenderTargetView* g_PERenderTargetView = NULL;
 ID3D11ShaderResourceView* g_PEShaderResourceView = NULL;
 
 
+ID3D11Buffer* g_ParameterBuffer;//パラメータ転送用バッファ（ピクセルシェーダーへ）
+
+
+void SetParameter(XMFLOAT4 Parameter)
+{
+	GetDeviceContext()->UpdateSubresource(g_ParameterBuffer, 0, NULL, &Parameter, 0, 0);
+}
+
+
 ID3D11ShaderResourceView* GetPETexture()
 {
 	return g_PEShaderResourceView;
@@ -376,6 +385,10 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	g_D3DDevice->CreateBuffer(&hBufferDesc, NULL, &g_CameraBuffer);
 	//g_ImmediateContext->VSSetConstantBuffers(4, 1, &g_CameraBuffer);//b4
 	g_ImmediateContext->PSSetConstantBuffers(4, 1, &g_CameraBuffer);//b4
+
+
+	g_D3DDevice->CreateBuffer(&hBufferDesc, NULL, &g_ParameterBuffer);
+	g_ImmediateContext->PSSetConstantBuffers(5, 1, &g_ParameterBuffer);//b5
 
 
 
